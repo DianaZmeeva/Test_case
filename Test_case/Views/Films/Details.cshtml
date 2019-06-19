@@ -1,0 +1,78 @@
+﻿@model Test_case.Models.Film
+
+@{
+    ViewBag.Title = "Details";
+}
+@using Microsoft.AspNet.Identity
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>Film @Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    @if (Model.Path != null)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img width="200" src="@Html.DisplayFor(model => model.Path)" alt="Image" />
+
+               @*@if (User.Identity.GetUserId() == Model.CreatorId)
+                {
+                    <div class="caption">
+                        @Html.ActionLink("Delete poster", "DeletePoster", new { id = Model.Id, page = ViewBag.Page }, new { @class = "btn btn-danger" })
+                    </div>
+                }*@
+            </div>
+        </div>
+    }
+    <dl class="dl-horizontal col-sm-6 col-md-8">
+        <dt>
+            @Html.DisplayNameFor(model => model.Creator.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creator.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producer)
+        </dd>
+    </dl>
+</div>
+
+<div class="col-sm-11">
+    @if (User.Identity.GetUserId() == Model.CreatorId)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>
+}
+    @Html.ActionLink("Back to List", "Index", new { page = ViewBag.Page })
+</div>
